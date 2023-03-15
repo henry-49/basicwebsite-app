@@ -13,7 +13,9 @@
 
                             <h4 class="card-title">Edit Profile Page</h4>
 
-                                <form  method="POST" action="{{ route('register') }}">
+                                <form  method="POST" action="{{ route('store.profile') }}" enctype="multipart/form-data">
+
+                                    @csrf
 
                                     <div class="row mb-3">
                                         <label for="name" class="col-sm-2 col-form-label">Name</label>
