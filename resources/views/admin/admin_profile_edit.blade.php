@@ -52,7 +52,10 @@
                                      <div class="row mb-3">
                                         <label for="ShowImage" class="col-sm-2 col-form-label"></label>
                                         <div class="col-sm-10">
-                                             <img id="ShowImage" class="rounded avatar-lg" src="{{ asset('backend/assets/images/small/img-5.jpg')}}" alt="Card image cap">
+                                             <img id="ShowImage" class="rounded avatar-lg"
+                                             src="{{ (!empty($editData->profile_image))
+                                                    ? url('upload/admin_images/'.$editData->profile_image)
+                                                    : url('upload/no_image.jpg') }}" alt="Card image cap">
                                         </div>
                                     </div>
                                     <!-- end row -->
