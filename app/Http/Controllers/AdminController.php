@@ -29,7 +29,6 @@ class AdminController extends Controller
         return redirect('/login')->with($notification);
     }
 
-
     /**
      * Admin profile
      */
@@ -55,7 +54,6 @@ class AdminController extends Controller
 
         return view('admin.admin_profile_edit', compact('editData'));
      }
-
 
     /**
      * StoreProfile
@@ -91,7 +89,6 @@ class AdminController extends Controller
             return redirect()->route('admin.profile')->with($notification);
      }
 
-
     /**
      * ChangeProfile
      */
@@ -102,7 +99,6 @@ class AdminController extends Controller
         return view('admin.admin_change_password');
 
      }
-
 
     /**
      * UpdatePassword
@@ -136,6 +132,5 @@ class AdminController extends Controller
         }
 
      }
-
 
 }
