@@ -25,6 +25,12 @@
         <!-- App js -->
         <script src="{{ asset('backend/assets/js/app.js')}}"></script>
 
+         <!--tinymce js-->
+        <script src="{{ asset('backend/assets/libs/tinymce/tinymce.min.js')}}"></script>
+
+        <!-- init js -->
+        <script src="{{ asset('backend/assets/js/pages/form-editor.init.js')}}"></script>
+
         <!-- Toster -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
