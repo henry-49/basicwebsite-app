@@ -70,5 +70,4 @@ class HomeSliderController extends Controller
      }
 
 
-
 }
