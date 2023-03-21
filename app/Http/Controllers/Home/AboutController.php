@@ -80,4 +80,14 @@ class AboutController extends Controller
         return view('frontend.about_page', compact('aboutpage'));
     }
 
+
+    /**
+     * Upload Multi Image
+     */
+
+     public function AboutMultiImage()
+     {
+
+        return view('admin.aboutpage.multi_image');
+     }
 }
