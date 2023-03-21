@@ -116,8 +116,6 @@ class AboutController extends Controller
 
             ]);
         }
-
-        var_dump($name_gen);
             $notification = array(
                 'message' => 'Multi Image Inserted Successfully',
                 'alert-type' => 'success',
@@ -158,26 +156,45 @@ class AboutController extends Controller
         // parsed id as hidden input
         $multi_image_id = $request->id;
 
-        if ($request->file('multi_image')) {
-            $image = $request->file('multi_image');
-            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); // 5446474338.jpg
+            if ($request->file('multi_image')) {
+                $image = $request->file('multi_image');
+                $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); // 5446474338.jpg
 
-            // resize image before upload
-            Image::make($image)->resize(220, 220)->save('upload/multi/' . $name_gen);
-            $save_url = 'upload/multi/' . $name_gen;
+                // resize image before upload
+                Image::make($image)->resize(220, 220)->save('upload/multi/' . $name_gen);
+                $save_url = 'upload/multi/' . $name_gen;
 
-            MultiImage::findOrFail($multi_image_id)->update([
-                'multi_image' => $save_url,
+                MultiImage::findOrFail($multi_image_id)->update([
+                    'multi_image' => $save_url,
 
-            ]);
+                ]);
 
-            $notification = array(
-                'message' => 'Image Updated Successfully',
-                'alert-type' => 'success',
-            );
+                $notification = array(
+                    'message' => 'Image Updated Successfully',
+                    'alert-type' => 'success',
+                );
 
-            return redirect()->route('all.multi.image')->with($notification);
-      }
-}
+                return redirect()->route('all.multi.image')->with($notification);
+            }
+     }
+
+
+     /**
+      * Delete a single image
+      */
+    public function DeleteMultiImage($id)
+    {
+         $imageID = MultiImage::findOrFail($id);
+         $img = $imageID->multi_image;
+         unlink($img);
+        MultiImage::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Image Deleted Successfully',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
+    }
 
 }
