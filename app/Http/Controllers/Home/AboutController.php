@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\MultiImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Intervention\Image\Facades\Image;
 
 class AboutController extends Controller
@@ -70,7 +72,6 @@ class AboutController extends Controller
             return redirect()->back()->with($notification);
         } // end if
 
-
     }
 
 
@@ -90,4 +91,38 @@ class AboutController extends Controller
 
         return view('admin.aboutpage.multi_image');
      }
+
+
+     /**
+      * Store Multi Image
+      */
+
+    public function StoreMultiImage(Request $request)
+    {
+
+        $image = $request->file('multi_image');
+
+        foreach ($image as $multi_image){
+
+            $name_gen = hexdec(uniqid()) . '.' . $multi_image->getClientOriginalExtension(); // 5446474338.jpg
+
+            // resize image before upload
+            Image::make($multi_image)->resize(220, 220)->save('upload/multi/' . $name_gen);
+            $save_url = 'upload/multi/' . $name_gen;
+
+            MultiImage::insert([
+                'multi_image' => $save_url,
+                'created_at' => Carbon::now(),
+
+            ]);
+        }
+
+        var_dump($name_gen);
+            $notification = array(
+                'message' => 'Multi Image Inserted Successfully',
+                'alert-type' => 'success',
+            );
+
+            return redirect()->back()->with($notification);
+    }
 }

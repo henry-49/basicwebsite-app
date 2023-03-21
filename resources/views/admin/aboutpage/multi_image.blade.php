@@ -14,14 +14,14 @@
 
                             <h4 class="card-title">Add Multi Page</h4> <br> <br>
 
-                                <form  method="POST" action="{{ route('update.about') }}" enctype="multipart/form-data">
+                                <form  method="POST" action="{{ route('store.multi.image') }}" enctype="multipart/form-data">
 
                                     @csrf
 
                                     <div class="row mb-3">
                                         <label for="multi_image" class="col-sm-2 col-form-label">About Multi Image</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" name="multi_image" type="file"  id="multi_image">
+                                            <input class="form-control" name="multi_image[]" type="file"  id="multi_image" multiple>
                                         </div>
                                     </div>
                                     <!-- end row -->
